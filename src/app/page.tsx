@@ -9,7 +9,18 @@ export default function Home() {
         <SolarDashboard />
       </main>
       <footer className="border-t border-zinc-200 py-4 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-        solarPost — Sharing solar generation data openly. ☀️
+        <p>solarPost — Sharing solar generation data openly. ☀️</p>
+        <p className="mt-1">
+          Built by{" "}
+          <a
+            href="https://www.linkedin.com/in/thanveer-ali-98041a1a3/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-amber-600 underline underline-offset-2 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300"
+          >
+            Thanveer Ali
+          </a>
+        </p>
       </footer>
     </div>
   );
