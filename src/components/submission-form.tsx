@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import type { SolarPostFormData, SolarPostWithCalculations } from "@/lib/types";
-import { addMockPost, calculateTotalCapacity, calculateSpecificYield } from "@/lib/mock-data";
+import { calculateTotalCapacity, calculateSpecificYield } from "@/lib/mock-data";
 
 function getTodayString(): string {
   const d = new Date();
@@ -57,11 +57,16 @@ export default function SubmissionForm({ onPostCreated }: SubmissionFormProps) {
     return Object.keys(newErrors).length === 0;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!validate()) return;
 
-    const created = addMockPost(form);
+    const res = await fetch("/api/posts", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
+    const created = await res.json();
     onPostCreated(created);
     setForm(emptyForm);
     setSubmitted(true);
